@@ -8,27 +8,37 @@
   <name>soccer Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+<!--   ojdbc -->
   <dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc10</artifactId>
 			<version>19.17.0.0</version>
 		</dependency>
+<!-- 		mybatis -->
 			<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.5.6</version>
 		</dependency>
+<!-- 		log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
+<!-- 		junit -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+<!--     lombok -->
+    <dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version>
+		</dependency>
   </dependencies>
   <build>
     <finalName>soccer</finalName>
