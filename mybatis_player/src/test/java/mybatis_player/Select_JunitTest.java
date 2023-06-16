@@ -2,7 +2,7 @@ package mybatis_player;
 
 import static org.junit.Assert.*;
 
-
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -41,7 +41,7 @@ public class Select_JunitTest {
 	public void select01() {
 		//에러가 날씨에 첫번째 방법 알리아스 사용을 한다.
 		String Team_id="K07";
-		Player_DTO one =dao.select01(Team_id);
+		List<Player_DTO> one =dao.select01(Team_id);
 		assertNotNull(one);
 	}
 

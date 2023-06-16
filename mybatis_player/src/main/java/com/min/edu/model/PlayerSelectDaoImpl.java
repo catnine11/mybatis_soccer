@@ -1,5 +1,7 @@
 package com.min.edu.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,9 +17,9 @@ public class PlayerSelectDaoImpl implements IPlayerSelectDao {
 	private final String NS="com.min.edu.model.PlayerSelectDaoImpl.";
 	private SqlSessionFactory manager= SqlDaoSupport.getFactory();
 	@Override
-	public Player_DTO select01(String player_id) {
+	public List<Player_DTO> select01(String player_id) {
 		SqlSession session =manager.openSession();
-		Player_DTO DTO=session.selectOne(NS+"select01",player_id);
+		List<Player_DTO> DTO=session.selectList(NS+"select01",player_id);
 		logger.info(DTO);
 		return DTO;
 	}
