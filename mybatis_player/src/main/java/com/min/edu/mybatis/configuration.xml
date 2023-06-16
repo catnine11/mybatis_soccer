@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+<!--db properties에서 가져오기위한것  -->
+<properties resource="proerties/db.properties"/>
+<typeAliases>
+<!-- 알리아스 설정 코드 mapper에서 result 타입을 가져온다 -->
+<typeAlias type="com.min.edu.dto.Player_DTO" alias="PDTO"/>
+</typeAliases>	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+
+				<property name="driver" value="${oracle_driver}" />
+				<property name="url" value="${oracle_url}" />
+				<property name="username" value="${oracle_user}" />
+				<property name="password" value="${oracle_pw}" />
+			</dataSource>
+
+
+
+		</environment>
+	</environments>
+<mappers>
+<mapper resource="com/min/edu/sql/A_Player_Select.xml"/>
+</mappers>
+</configuration>
