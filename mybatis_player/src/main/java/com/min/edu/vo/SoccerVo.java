@@ -15,7 +15,9 @@ import lombok.ToString;
 @AllArgsConstructor
 
 public class SoccerVo {
-	
+	private String player_id    ;
+	private String player_name  ;
+	private String team_id      ;
 	private String stadium_id   ;
 	private String sche_date    ;
 	private String gubun        ;
@@ -24,7 +26,7 @@ public class SoccerVo {
 	private String home_score   ;
 	private String away_score   ;
 
-	private String team_id      ;
+	
 	private String region_name  ;
 	private String team_name    ;
 	private String e_team_name  ;
@@ -37,9 +39,6 @@ public class SoccerVo {
 	private String fax          ;
 	private String homepage     ;
 	private String owner        ;
-
-	private String player_id    ;
-	private String player_name  ;
 	private String e_player_name;
 	private String nickname     ;
 	private String join_yyyy    ;

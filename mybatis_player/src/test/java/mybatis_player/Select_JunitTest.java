@@ -19,7 +19,7 @@ public class Select_JunitTest {
 	SqlSession session;
 	private IPlayerSelectDao dao = new PlayerSelectDaoImpl();
 
-	//@Test
+//	@Test
 	public void test() {
 	Player_DTO DTO= new Player_DTO();
 	DTO.setTeam_id("K07");
@@ -44,5 +44,14 @@ public class Select_JunitTest {
 		List<Player_DTO> one =dao.select01(Team_id);
 		assertNotNull(one);
 	}
+	//@Test
+	public void select02() {
+		//에러가 날씨에 첫번째 방법 알리아스 사용을 한다.
+		String team_name="전북현대";
+		List<Player_DTO> one =dao.select02(team_name);
+		assertNotNull(one);
+	}
+	
+	
 
 }

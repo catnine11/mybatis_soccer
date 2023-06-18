@@ -24,5 +24,6 @@
 	</environments>
 <mappers>
 <mapper resource="com/min/edu/sql/A_Player_Select.xml"/>
+<mapper resource="com/min/edu/sql/IUD_Player.xml"/>
 </mappers>
 </configuration>

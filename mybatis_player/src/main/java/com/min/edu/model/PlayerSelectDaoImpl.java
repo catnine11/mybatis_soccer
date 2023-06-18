@@ -23,6 +23,14 @@ public class PlayerSelectDaoImpl implements IPlayerSelectDao {
 		logger.info(DTO);
 		return DTO;
 	}
+	@Override
+	public List<Player_DTO> select02(String team_name) {
+		SqlSession session =manager.openSession();
+		List<Player_DTO> DTO=session.selectList(NS+"select02",team_name);
+		logger.info(DTO);
+		return DTO;
+	}
+	
 	
 	
 }
