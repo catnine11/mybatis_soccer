@@ -22,7 +22,7 @@ public class Select_JunitTest {
 //	@Test
 	public void test() {
 	Player_DTO DTO= new Player_DTO();
-	DTO.setTeam_id("K07");
+	DTO.setTeam_id("k07");
 	DTO.getTeam_id();
 	System.out.println(DTO);
 	assertNotNull(DTO);
@@ -35,8 +35,9 @@ public class Select_JunitTest {
 	}
 	
 	//select03 메서드를 호출하여 id를 인자로 전달합니다. 
-	//이 메서드는 데이터베이스에서 해당 id에 해당하는 JobVo 객체를 조회하여 반환합니다.
-	//조회된 결과는 one 변수에 할당됩니다.
+	/*
+	 *팀별 평균키 조회 
+	 */
 	@Test
 	public void select01() {
 		//에러가 날씨에 첫번째 방법 알리아스 사용을 한다.
@@ -44,6 +45,10 @@ public class Select_JunitTest {
 		List<Player_DTO> one =dao.select01(Team_id);
 		assertNotNull(one);
 	}
+	/*
+	 * SELECT02 팀이름 구장이름 좌석수
+	 * 
+	 */
 	//@Test
 	public void select02() {
 		//에러가 날씨에 첫번째 방법 알리아스 사용을 한다.

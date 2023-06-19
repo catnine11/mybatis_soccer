@@ -6,4 +6,12 @@
   <insert id="insert01" parameterType="PDTO">
   INSERT INTO PLAYER2  (PLAYER_ID,PLAYER_NAME,TEAM_ID) VALUES(#{player_id},#{player_name},#{team_id})
   </insert>
+    <delete id="delete01" parameterType="java.util.Map" >
+  DELETE FROM PLAYER2
+   WHERE PLAYER_ID=#{player_id}
+  </delete>
+  <update id="update01" parameterType="java.util.Map">
+  UPDATE PLAYER2 SET TEAM_ID =#{team_id}
+   WHERE PLAYER_ID =#{player_id}
+  </update>
 </mapper>
