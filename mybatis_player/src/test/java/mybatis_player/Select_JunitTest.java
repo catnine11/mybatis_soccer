@@ -22,7 +22,7 @@ public class Select_JunitTest {
 //	@Test
 	public void test() {
 	Player_DTO DTO= new Player_DTO();
-	DTO.setTeam_id("K07");
+	DTO.setTeam_id("k07");
 	DTO.getTeam_id();
 	System.out.println(DTO);
 	assertNotNull(DTO);
