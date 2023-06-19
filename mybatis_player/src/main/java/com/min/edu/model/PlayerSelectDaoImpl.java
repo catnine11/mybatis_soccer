@@ -13,6 +13,7 @@ import com.min.edu.mybatis.SqlDaoSupport;
 
 
 public class PlayerSelectDaoImpl implements IPlayerSelectDao {
+	
 	private Logger logger=Logger.getLogger(this.getClass());
 	private final String NS="com.min.edu.model.PlayerSelectDaoImpl.";
 	private SqlSessionFactory manager= SqlDaoSupport.getFactory();

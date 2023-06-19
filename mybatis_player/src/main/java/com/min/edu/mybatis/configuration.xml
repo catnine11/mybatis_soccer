@@ -2,10 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 <!--db properties에서 가져오기위한것  -->
-<properties resource="proerties/db.properties"/>
+<properties resource="proerties/db_gr.properties"/>
 <typeAliases>
 <!-- 알리아스 설정 코드 mapper에서 result 타입을 가져온다 -->
 <typeAlias type="com.min.edu.dto.Player_DTO" alias="PDTO"/>
+<typeAlias type="com.min.edu.vo.SoccerVo" alias="SVO"/>
 </typeAliases>	
 	<environments default="development">
 		<environment id="development">
@@ -25,5 +26,6 @@
 <mappers>
 <mapper resource="com/min/edu/sql/A_Player_Select.xml"/>
 <mapper resource="com/min/edu/sql/IUD_Player.xml"/>
+<mapper resource="com/min/edu/sql/Soccer_Select.xml"/>
 </mappers>
 </configuration>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.SoccerSelectDaoImpl">
+
+<resultMap type="SVO" id="SMap">
+<result column="HOME_TEAM" property="team_name"/>
+<result column="AWAY_TEAM" property="team_name"/>
+<result column="HOME_SCORE" property="home_score"/>
+<result column="AWAY_SCORE" property="away_score"/>
+</resultMap>
+
+<resultMap type="SVO" id="BMap">
+<result column="TEAM_NAME" property="team_name"/>
+<result column="PLAYER_NAME" property="player_name"/>
+<result column="POSITION" property="position"/>
+</resultMap>
+
+	<select id="sel_sche" resultMap="SMap">
+	SELECT T1.TEAM_NAME AS HOME_TEAM,
+			T2.TEAM_NAME AS AWAY_TEAM,
+			S.HOME_SCORE,
+			S.AWAY_SCORE
+		FROM SCHEDULE S
+			INNER JOIN TEAM T1 ON S.HOMETEAM_ID = T1.TEAM_ID
+			INNER JOIN TEAM T2 ON S.AWAYTEAM_ID = T2.TEAM_ID
+	WHERE S.SCHE_DATE = #{schedule}
+	ORDER BY T1.TEAM_NAME ASC, T2.TEAM_NAME
+	</select>
+	
+	<select id="sel_period" resultType="SVO">
+	SELECT PLAYER_NAME,
+			TEAM_NAME,
+			PERIOD,
+			NICKNAME
+		FROM (SELECT
+				P.PLAYER_NAME,
+				T.TEAM_NAME,
+				COALESCE(EXTRACT(YEAR FROM SYSDATE) - TO_NUMBER(SUBSTR(P.JOIN_YYYY, 1, 4)), 0) AS PERIOD,
+				COALESCE(P.NICKNAME, '없음') AS NICKNAME,
+				ROW_NUMBER() OVER (PARTITION BY T.TEAM_NAME ORDER BY P.JOIN_YYYY ASC) AS RN
+			FROM PLAYER P
+				INNER JOIN TEAM T ON P.TEAM_ID = T.TEAM_ID)
+	WHERE RN = 1
+		AND PERIOD>0
+	</select>
+
+	<select id="sel_awayratiohigh" resultType="SVO">
+	SELECT TEAM_NAME , win_ratio
+		FROM (SELECT T.TEAM_NAME,
+				SUM(CASE WHEN S.AWAYTEAM_ID = T.TEAM_ID AND S.AWAY_SCORE > S.HOME_SCORE 
+							THEN 1 ELSE 0 END) AS WIN_COUNT,
+				COUNT(*) AS GAME_COUNT,
+				ROUND(SUM(CASE WHEN S.AWAYTEAM_ID = T.TEAM_ID AND S.AWAY_SCORE > S.HOME_SCORE
+							THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS WIN_RATIO,
+				ROW_NUMBER() OVER (ORDER BY SUM
+						(CASE WHEN S.AWAYTEAM_ID = T.TEAM_ID AND S.AWAY_SCORE > S.HOME_SCORE 
+								THEN 1 ELSE 0 END) / COUNT(*) DESC) AS RN
+				FROM SCHEDULE S
+	JOIN TEAM T ON S.AWAYTEAM_ID = T.TEAM_ID
+	GROUP BY T.TEAM_NAME
+	HAVING COUNT(*) > 0
+	ORDER BY WIN_RATIO DESC)
+	WHERE RN = 1
+	</select>
+	
+	<select id="sel_backno" resultMap="BMap">
+	SELECT PLAYER_NAME, TEAM_NAME, POSITION
+		FROM TEAM t
+		JOIN PLAYER p ON t.TEAM_ID = p.TEAM_ID
+	WHERE p.BACK_NO = #{backno}
+	</select>
+
+</mapper>
