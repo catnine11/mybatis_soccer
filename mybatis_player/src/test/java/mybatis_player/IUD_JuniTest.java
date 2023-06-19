@@ -26,6 +26,9 @@ public class IUD_JuniTest {
 	session	=manager.openSession();//openSession의 기본 auto-commit이 false
 		assertNotNull(manager);
 	}
+	/*
+	 * 신규 선수를 등록하는 기능 
+	 */
 	//@Test
 	public void insert01() {
 	Player_DTO dto = new Player_DTO("2023061", "태승","k07", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
@@ -33,6 +36,9 @@ public class IUD_JuniTest {
 	assertEquals(n, 1);
 		
 	}
+	/*
+	 * 선수를 삭제 하는 기능으로 삭제시 은퇴 테이블에 선수 정보와 은퇴날짜가 들어가는 트리거발생 
+	 */
 	@Test
 	   public void delete01() {
 	   Map<String,Object> map =new HashMap<String, Object>();
@@ -41,6 +47,9 @@ public class IUD_JuniTest {
 	   assertEquals(n, 1);
 
 }
+	/* 선수의 팀을 변경하는 기능
+	 *  player_id는 그대로 유지
+	 */
 //	@Test 
 	   public void update01() {
 	   Map<String, Object> map = new HashMap<String, Object>();
