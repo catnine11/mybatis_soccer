@@ -29,6 +29,9 @@ public class PlayerSelectDaoImpl implements IPlayerSelectDao {
 		SqlSession session =manager.openSession();
 		List<Player_DTO> DTO=session.selectList(NS+"select02",team_name);
 		logger.info(DTO);
+
+		//테스트용 주석처리
+
 		return DTO;
 	}
 	
